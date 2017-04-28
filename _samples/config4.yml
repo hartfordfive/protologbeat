@@ -1,0 +1,10 @@
+protologbeat:
+  port: 6000
+  max_message_size: 2048
+  default_es_log_type: protologbeat
+  merge_fields_to_root: true
+  enable_json_validation: true
+  validate_all_json_types: true
+  json_schema: 
+    email_contact: "/etc/protologbeat/app1_schema.json"
+    stock_item: "/etc/protologbeat/app2_schema.json"

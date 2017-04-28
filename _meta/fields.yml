@@ -1,0 +1,9 @@
+- key: protologbeat
+  title: protologbeat
+  description:
+  fields:
+    - name: counter
+      type: long
+      required: true
+      description: >
+        PLEASE UPDATE DOCUMENTATION
