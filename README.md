@@ -3,7 +3,7 @@
 ## Description
 
 
-Protologbeat is an application that accepts logs via tcp or udp.  It can act accept plain-text or JSON logs and also act as a syslog destination replacement.  It's intended as a replacement for [udplogbeat]().
+Protologbeat is an application that accepts logs via tcp or udp.  It can act accept plain-text or JSON logs and also act as a syslog destination replacement.  It's intended as a replacement for [udplogbeat](https://github.com/hartfordfive/udplogbeat).
 
 
 Ensure that this folder is at the following location:
@@ -24,34 +24,25 @@ Ensure that this folder is at the following location:
 
 The following are examples of configuration blocks for the `protologbeat` section.  
 
-1. Sample configuration block for a syslog replacement
-_sample/config1.yml
+1. [Configuration](_sample/config1.yml) block for a syslog replacement
+2. [Configuration](_sample/config2.yml) block that enforces JSON schema only for indicated Elasticsearch types:
+3. [Configuration](_sample/config3.yml) block that enforces JSON schema only for indicated Elasticsearch types:
+4. [Configuration](_sample/config4.yml) block that enforces JSON schema for all events:
 
-2. Sample configuration block that enforces JSON schema only for indicated Elasticsearch types:
-_sample/config2.yml
-
-3. Sample configuration block that enforces JSON schema only for indicated Elasticsearch types:
-_sample/config3.yml
-
-4. Sample configuration block that enforces JSON schema for all events:
-_sample/config4.yml
-
-
-JSON schemas can be automatically generated from an object here: http://jsonschema.net/.  You can also view the included sample schemas `_samples/app1_schema.json` and `_samples/app2_schema.json` as examples.
+JSON schemas can be automatically generated from an object here: http://jsonschema.net/.  You can also view the [email_contact](_samples/email_contact.json) and [stock_item](_samples/stock_item.json) schemas as examples.
 
 #### Considerations
 
-If you intend on using this as a drop-in replacement to logging with Rsyslog, this method will not persist your data to a file on disk.  
-If protologbeat is down for any given reason, messages sent to the configured UDP port will never be processed or sent to your ELK cluster.
-If you need 100% guarantee each message will be delivered at least once, this may not be the best solution for you.  
-If some potential loss of log events is acceptable for you, than this may be a reasonable solution for you.
+- If you intend on using this as a drop-in replacement to logging with Rsyslog, this method will not persist your data to a file on disk. 
+- If protologbeat is down for any given reason, messages sent to the configured UDP port will never be processed or sent to your ELK cluster.
+- If you need 100% guarantee each message will be delivered at least once, this may not be the best solution for you.  
+- If some potential loss of log events is acceptable for you, than this may be a reasonable solution for you.
 
 *Please note the current date/time is automatically added to each log entry.*
 
 ### Sample Clients
 
 Please see the `sample_clients/` directory for examples of clients in various languages.
-
 
 
 ### Requirements
