@@ -37,12 +37,13 @@ JSON schemas can be automatically generated from an object here: http://jsonsche
 - If protologbeat is down for any given reason, messages sent to the configured UDP port will never be processed or sent to your ELK cluster.
 - If you need 100% guarantee each message will be delivered at least once, this may not be the best solution for you.  
 - If some potential loss of log events is acceptable for you, than this may be a reasonable solution for you.
-
-*Please note the current date/time is automatically added to each log entry.*
+- This application is intended for scenarios where your application can log to protologbeat running on the same physical host.  It's discouraged to use this for cross-server/cross-region/cross-datacenter logging.
+- The current date/time is automatically added to each log entry once it is received by protologbeat.
+- Considering this could log data with any type of fields, it's suggested that you add your necessary field names and types to the [protologbeat.template-es2x.json](protologbeat.template-es2x.json) or [protologbeat.template.json](protologbeat.template.json) (*ES 5.x*) index templates.
 
 ### Sample Clients
 
-Please see the `sample_clients/` directory for examples of clients in various languages.
+Please see the `_samples/` directory for examples of clients in various languages.
 
 
 ### Requirements
