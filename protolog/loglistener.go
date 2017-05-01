@@ -127,7 +127,6 @@ func (ll *LogListener) processMessage(buffer []byte, length int) {
 		logp.Err("Event is empty")
 		return
 	}
-
 	event := common.MapStr{}
 
 	if ll.config.EnableSyslogFormatOnly {
