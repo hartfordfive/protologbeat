@@ -27,7 +27,7 @@ var DefaultConfig = Config{
 	Port:                   5000,
 	Protocol:               "udp",
 	MaxMsgSize:             4096,
-	JsonMode:               true,
+	JsonMode:               false,
 	DefaultEsLogType:       "protologbeat",
 	MergeFieldsToRoot:      false,
 	EnableSyslogFormatOnly: false,

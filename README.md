@@ -2,9 +2,7 @@
 
 ## Description
 
-
-Protologbeat is an application that accepts logs via tcp or udp.  It can act accept plain-text or JSON logs and also act as a syslog destination replacement.  It's intended as a replacement for [udplogbeat](https://github.com/hartfordfive/udplogbeat).
-
+This application is intended as a replacement for [udplogbeat](https://github.com/hartfordfive/udplogbeat). Although quite similar, it does have some improvements and allows you to start up via either UDP or TCP. It can act accept plain-text or JSON logs and also act as a syslog destination replacement.
 
 Ensure that this folder is at the following location:
 `${GOPATH}/github.com/harfordfive`
@@ -14,20 +12,23 @@ Ensure that this folder is at the following location:
 ### Configuration Options
 
 - `protologbeat.port` : The UDP port on which the process will listen (Default = 5000)
-- `protologbeat.max_message_size` : The maximum accepted message size (Default = 1024)
+- `protologbeat.max_message_size` : The maximum accepted message size (Default = 4096)
+- `protologbeat.json_mode`: Enable logging of only JSON formated messages (Default = false)
+- `protolog.merge_fields_to_root` : When **json_mode** enabled, wether to merge parsed fields to the root level. (Default = false)
+- `protologbeat.default_es_log_type`: Elasticsearch type to assign to an event if one isn't specified (Default: protologbeat)
 - `protologbeat.enable_syslog_format_only` : Boolean value indicating if only syslog messages should be accepted. (Default = false)
 - `protologbeat.enable_json_validation` : Boolean value indicating if JSON schema validation should be applied for `json` format messages (Default = false)
-- `protologbeat.publish_failed_json_invalid` : Boolean value indicating if JSON objects should be sent serialized in the event of a failed validation.  This will add the `_protologbeat_jspf` tag. (Default = false)
+- `protologbeat.validate_all_json_types` : When json_mode enabled, indicates if ALL types must have a schema specified. Log entries with types that have no schema will not be published. (Default = false)
 - `protologbeat.json_document_type_schema` :  A hash consisting of the Elasticsearch type as the key, and the absolute local schema file path as the value.
 
 ### Configuration Example
 
 The following are examples of configuration blocks for the `protologbeat` section.  
 
-1. [Configuration](_sample/config1.yml) block for a syslog replacement
-2. [Configuration](_sample/config2.yml) block that enforces JSON schema only for indicated Elasticsearch types:
-3. [Configuration](_sample/config3.yml) block that enforces JSON schema only for indicated Elasticsearch types:
-4. [Configuration](_sample/config4.yml) block that enforces JSON schema for all events:
+1. [Configuration](_sample/config1.yml) block for plain-text logging
+2. [Configuration](_sample/config2.yml) block that enforces JSON schema only for indicated Elasticsearch types
+3. [Configuration](_sample/config4.yml) block that enforces JSON schema for all Elasticsearch types
+4. [Configuration](_sample/config3.yml) block for a syslog replacement, with custom ES type of 'myapp'
 
 JSON schemas can be automatically generated from an object here: http://jsonschema.net/.  You can also view the [email_contact](_samples/email_contact.json) and [stock_item](_samples/stock_item.json) schemas as examples.
 

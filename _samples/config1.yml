@@ -1,4 +1,3 @@
 protologbeat:
   port: 6000
   max_message_size: 4096
-  enable_syslog_format_only: false
