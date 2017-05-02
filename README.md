@@ -79,6 +79,14 @@ in the same directory with the name protologbeat.
 make
 ```
 
+If you'd like to build the binary for OSX, Linux and/or Windows, you can run the following:
+
+```
+./build-bin [TAG_VERSION]
+```
+
+The resulting binaries will be placed in the `bin/` directory
+
 
 ### Run
 
