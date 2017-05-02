@@ -1,6 +1,7 @@
 /.idea
 /build
 
+/bin
 .DS_Store
 /protologbeat
 /protologbeat.test
