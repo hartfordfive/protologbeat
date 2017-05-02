@@ -1,0 +1,8 @@
+/.idea
+/build
+
+.DS_Store
+/protologbeat
+/protologbeat.test
+protologbeat.local.yml
+*.pyc

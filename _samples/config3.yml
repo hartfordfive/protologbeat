@@ -1,0 +1,5 @@
+protologbeat:
+  port: 6000
+  max_message_size: 2048
+  default_es_log_type: myapp
+  enable_syslog_format_only: true
