@@ -157,6 +157,10 @@ git clone https://github.com/harfordfive/protologbeat
 
 For further development, check out the [beat developer guide](https://www.elastic.co/guide/en/beats/libbeat/current/new-beat.html).
 
+## Running on Docker
+
+You can find the Docker images for this beat [here](https://hub.docker.com/r/hartfordfive/protologbeat/).  Please take note the container starts with a basic config that listens on the default protocol/address/port and accepts plain-text messages.  For any customizations, please modify the sample protologbeat.full.yml config and create your own Docker file that overwrites the original. 
+
 
 ## Packaging
 
