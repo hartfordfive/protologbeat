@@ -11,7 +11,9 @@ Ensure that this folder is at the following location:
 
 ### Configuration Options
 
-- `protologbeat.port` : The UDP port on which the process will listen (Default = 5000)
+- `protologbeat.protocol` : Either **tcp** or **udp** (Default: udp)
+- `protologbeat.address` : The address on which the process will lisen (Deafult: 127.0.0.1)
+- `protologbeat.port` : The port on which the process will listen (Default = 5000)
 - `protologbeat.max_message_size` : The maximum accepted message size (Default = 4096)
 - `protologbeat.json_mode`: Enable logging of only JSON formated messages (Default = false)
 - `protolog.merge_fields_to_root` : When **json_mode** enabled, wether to merge parsed fields to the root level. (Default = false)
@@ -19,7 +21,7 @@ Ensure that this folder is at the following location:
 - `protologbeat.enable_syslog_format_only` : Boolean value indicating if only syslog messages should be accepted. (Default = false)
 - `protologbeat.enable_json_validation` : Boolean value indicating if JSON schema validation should be applied for `json` format messages (Default = false)
 - `protologbeat.validate_all_json_types` : When json_mode enabled, indicates if ALL types must have a schema specified. Log entries with types that have no schema will not be published. (Default = false)
-- `protologbeat.json_document_type_schema` :  A hash consisting of the Elasticsearch type as the key, and the absolute local schema file path as the value.
+- `protologbeat.json_schema` :  A hash consisting of the Elasticsearch type as the key, and the absolute local schema file path as the value.
 
 ### Configuration Example
 
