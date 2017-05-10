@@ -8,7 +8,7 @@ ARG VERSION
 ENV VERSION=$VERSION
 
 RUN set -ex ;\
-    # Ensure kibana user exists
+    # Ensure protologbeat user exists
     addgroup -S protologbeat && adduser -S -G protologbeat protologbeat ;\
     # Install dependencies
     apk --no-cache add gettext libc6-compat curl ;\
@@ -37,4 +37,4 @@ RUN chown -R protologbeat:protologbeat /opt/protologbeat ;\
 WORKDIR /opt/protologbeat
 USER protologbeat
 
-CMD ["protologbeat", "-e", "-c", "/opt/protologbeat/conf/protologbeat.yml"]
+CMD ["protologbeat", "-c", "/opt/protologbeat/conf/protologbeat.yml"]
