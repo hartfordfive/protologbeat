@@ -7,6 +7,8 @@ protologbeat:
   port: ${PORT:6000}
   protocol: ${PROTOCOL:udp}
   max_msg_size: ${MAX_MSG_SIZE:4096}
+  enable_gelf: ${ENABLE_GELF:false}
+  enable_syslog_format_only: ${ENABLE_SYSLOG:false}
   default_es_log_type: ${DEFAULT_ES_TYPE:protologbeat}
 
 

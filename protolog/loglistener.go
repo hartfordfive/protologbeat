@@ -76,19 +76,19 @@ func (ll *LogListener) startTCP(proto string, address string) {
 			continue
 		}
 
-		go func() {
-			buffer := make([]byte, ll.config.MaxMsgSize)
-			length, err := conn.Read(buffer)
-			if err != nil {
-				e, ok := err.(net.Error)
-				if ok && e.Timeout() {
-					logp.Err("Timeout reading from socket: %v", err)
-					ll.logEntriesError <- true
-					return
-				}
+		buffer := make([]byte, ll.config.MaxMsgSize)
+
+		length, err := conn.Read(buffer)
+		if err != nil {
+			e, ok := err.(net.Error)
+			if ok && e.Timeout() {
+				logp.Err("Timeout reading from socket: %v", err)
+				ll.logEntriesError <- true
+				return
 			}
-			go ll.processMessage(buffer, length)
-		}()
+		}
+		go ll.processMessage(strings.TrimSpace(string(buffer[:length])))
+
 	}
 }
 
@@ -111,7 +111,10 @@ func (ll *LogListener) startUDP(proto string, address string) {
 			logp.Err("Error reading from buffer: %v", err.Error())
 			continue
 		}
-		go ll.processMessage(buffer, length)
+		if length == 0 {
+			return
+		}
+		go ll.processMessage(strings.TrimSpace(string(buffer[:length])))
 	}
 }
 
@@ -141,13 +144,8 @@ func (ll *LogListener) Shutdown() {
 	close(ll.logEntriesRecieved)
 }
 
-func (ll *LogListener) processMessage(buffer []byte, length int) {
+func (ll *LogListener) processMessage(logData string) {
 
-	if length == 0 {
-		return
-	}
-
-	logData := strings.TrimSpace(string(buffer[:length]))
 	if logData == "" {
 		logp.Err("Event is empty")
 		return

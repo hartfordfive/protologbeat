@@ -37,9 +37,9 @@ class Logger:
 
 
 # Initializing udp connection and sending a plaintext message
-l = Logger('127.0.0.1', 6000)
-l.enable_debug()
-l.send_message('This is a sample plaintext message to be sent via udp')
+#l = Logger('127.0.0.1', 6000)
+#l.enable_debug()
+#l.send_message('This is a sample plaintext message to be sent via udp')
 
 # Initializing tcp connection and sending a json-encoded message
 #l = Logger('127.0.0.1', 6000, 'tcp', 'json')

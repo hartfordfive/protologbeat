@@ -7,3 +7,4 @@
 /protologbeat.test
 protologbeat.local.yml
 *.pyc
+/logs
