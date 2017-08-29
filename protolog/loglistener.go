@@ -99,9 +99,9 @@ func (ll *LogListener) startUDP(proto string, address string) {
 	defer l.Close()
 
 	logp.Info("Now listening for logs via %s on %s", ll.config.Protocol, address)
+	buffer := make([]byte, ll.config.MaxMsgSize)
 
 	for {
-		buffer := make([]byte, ll.config.MaxMsgSize)
 		length, _, err := l.ReadFrom(buffer)
 		if err != nil {
 			logp.Err("Error reading from buffer: %v", err.Error())
