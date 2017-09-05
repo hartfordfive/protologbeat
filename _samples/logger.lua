@@ -34,8 +34,8 @@ function Logger:sendMsg(msg)
 end
 
 -- Start logger client to send plain-text formated message to protologbeat listening on UDP host/port
-logger = Logger.init('127.0.0.1', 6000, "udp", "plain")
-logger:sendMsg('This is a sample message sent from the Lua logger.')
+--logger = Logger.init('127.0.0.1', 6000, "udp", "plain")
+--logger:sendMsg('This is a sample message sent from the Lua logger.')
 
 -- Start logger client to send json formated message to protologbeat listening on TCP host/port
 --logger = Logger.init('127.0.0.1', 6000, "tcp", "json")

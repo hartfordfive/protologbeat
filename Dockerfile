@@ -13,26 +13,24 @@ RUN set -ex ;\
     # Install dependencies
     apk --no-cache add gettext libc6-compat curl ;\
     # Hotfix for libc compat
-    ln -s /lib /lib64
-
-RUN cd /tmp ;\
+    ln -s /lib /lib64 ;\
+    cd /tmp ;\
     mkdir -p /opt/protologbeat/conf ;\
     mkdir -p /opt/protologbeat/ssl ;\
     curl -L https://github.com/hartfordfive/protologbeat/releases/download/${VERSION}/protologbeat-${VERSION}-linux-x86_64.tar.gz --output protologbeat-${VERSION}-linux-x86_64.tar.gz ;\
     tar -xvzf protologbeat-${VERSION}-linux-x86_64.tar.gz ;\
     mv /tmp/protologbeat-${VERSION}-linux-x86_64 /opt/protologbeat/protologbeat ;\
-    rm -rf protologbeat-${VERSION}-linux-x86_64 && rm protologbeat-${VERSION}-linux-x86_64.tar.gz
+    rm -rf protologbeat-${VERSION}-linux-x86_64 && rm protologbeat-${VERSION}-linux-x86_64.tar.gz ;\
+    # Fix permissions
+    chown -R protologbeat:protologbeat /opt/protologbeat ;\
+    chmod 750 /opt/protologbeat ;\
+    chmod 700 /opt/protologbeat/ssl
 
 ENV PATH=/opt/protologbeat:$PATH
 
 COPY protologbeat-docker.yml /opt/protologbeat/conf/protologbeat.yml
 COPY protologbeat.template-es2x.json /opt/protologbeat
 COPY protologbeat.template.json /opt/protologbeat
-
-# Fix permissions
-RUN chown -R protologbeat:protologbeat /opt/protologbeat ;\
-    chmod 750 /opt/protologbeat ;\
-    chmod 700 /opt/protologbeat/ssl
 
 WORKDIR /opt/protologbeat
 USER protologbeat
