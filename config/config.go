@@ -13,7 +13,6 @@ type Config struct {
 	MaxMsgSize             int               `config:"max_msg_size"`
 	JsonMode               bool              `config:"json_mode"`
 	EnableGelf             bool              `config:"enable_gelf"`
-	DefaultEsLogType       string            `config:"default_es_log_type"`
 	MergeFieldsToRoot      bool              `config:"merge_fields_to_root"`
 	EnableSyslogFormatOnly bool              `config:"enable_syslog_format_only"`
 	EnableJsonValidation   bool              `config:"enable_json_validation"`
@@ -30,7 +29,6 @@ var DefaultConfig = Config{
 	MaxMsgSize:             4096,
 	JsonMode:               false,
 	EnableGelf:             false,
-	DefaultEsLogType:       "protologbeat",
 	MergeFieldsToRoot:      false,
 	EnableSyslogFormatOnly: false,
 	EnableJsonValidation:   false,

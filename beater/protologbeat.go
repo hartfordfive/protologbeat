@@ -59,9 +59,6 @@ func (bt *Protologbeat) Run(b *beat.Beat) error {
 			if event == nil {
 				return nil
 			}
-			if _, ok := event["type"]; !ok {
-				event["type"] = bt.config.DefaultEsLogType
-			}
 			bt.client.PublishEvent(event)
 			logp.Info("Event sent")
 		}

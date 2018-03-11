@@ -17,10 +17,7 @@ protologbeat:
   
   # Enable accepting on JSON formated messages
   #json_mode: true
-  
-  # Default elasticsearch type to use if no type is present in the message
-  #default_es_log_type: protologbeat
-  
+
   # Wether to place the parsed json data at the root level or nested in a 'log' object
   #merge_fields_to_root: true
   

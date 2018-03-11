@@ -232,9 +232,12 @@ func (ll *LogListener) processGelfMessage(msg *gelf.Message) {
 	event := common.MapStr{}
 	event["gelf"] = map[string]interface{}{"version": msg.Version}
 	event["host"] = msg.Host
-	event["type"] = ll.config.DefaultEsLogType
 	event["short_message"] = msg.Short
 	event["full_message"] = msg.Full
+
+	for name,value := range msg.Extra {
+		event[name] = value
+	}
 
 	// 1 ms = 1000000 ns
 	if msg.TimeUnix == 0 {
