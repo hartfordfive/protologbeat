@@ -23,6 +23,17 @@ type LogListener struct {
 	logEntriesError    chan bool
 }
 
+var gelfLevels = map[int32]string{
+	0: "emergency",
+	1: "alert",
+	2: "critical",
+	3: "error",
+	4: "warning",
+	5: "notice",
+	6: "info",
+	7: "debug",
+}
+
 func NewLogListener(cfg config.Config) *LogListener {
 	ll := &LogListener{
 		config: cfg,
@@ -46,10 +57,13 @@ func (ll *LogListener) Start(logEntriesRecieved chan common.MapStr, logEntriesEr
 
 	address := fmt.Sprintf("%s:%d", ll.config.Address, ll.config.Port)
 
-	if ll.config.Protocol == "tcp" {
-		ll.startTCP(ll.config.Protocol, address)
-	} else if ll.config.EnableGelf {
+	if ll.config.EnableGelf {
+		if ll.config.Protocol == "tcp" {
+			logp.Err("[protocol: tcp] has no affect together with enable_gelf, starting GELF listener")
+		}
 		ll.startGELF(address)
+	} else if ll.config.Protocol == "tcp" {
+		ll.startTCP(ll.config.Protocol, address)
 	} else {
 		ll.startUDP(ll.config.Protocol, address)
 	}
@@ -250,7 +264,13 @@ func (ll *LogListener) processGelfMessage(msg *gelf.Message) {
 		}
 	}
 
-	event["level"] = msg.Level
+	// Parse level to  be human readable
+	if ll.config.ParseGelfLevels {
+		event["level"] = gelfLevels[msg.Level]
+	} else {
+		event["level"] = msg.Level
+	}
+
 	event["facility"] = msg.Facility
 	ll.logEntriesRecieved <- event
 

@@ -10,6 +10,7 @@ protologbeat:
   #port: 5000
   
   # Protocol on which to listen
+  # This has no action if gelf is enabled
   #protocol: udp
   
   # Maxium message size in bytes
@@ -29,6 +30,9 @@ protologbeat:
   
   # Set process to receive only GELF formated messages
   #enable_gelf: false
+
+  # Parse gelf level to be human readable (6 => "info")
+  # parse_gelf_levels: false
 
   # Enable json validation with schemas
   #enable_json_validation: false

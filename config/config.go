@@ -20,6 +20,7 @@ type Config struct {
 	ValidateAllJSONTypes   bool              `config:"validate_all_json_types"`
 	JsonSchema             map[string]string `config:"json_schema"`
 	Debug                  bool              `config:"debug"`
+	ParseGelfLevels        bool              `config:"parse_gelf_levels"`
 }
 
 var DefaultConfig = Config{
