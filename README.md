@@ -28,10 +28,10 @@ Ensure that this folder is at the following location:
 
 The following are examples of configuration blocks for the `protologbeat` section.  
 
-1. [Configuration](_sample/config1.yml) block for plain-text logging
-2. [Configuration](_sample/config2.yml) block that enforces JSON schema only for indicated Elasticsearch types
-3. [Configuration](_sample/config4.yml) block that enforces JSON schema for all Elasticsearch types
-4. [Configuration](_sample/config3.yml) block for a syslog replacement, with custom ES type of 'myapp'
+1. [Configuration](_samples/config1.yml) block for plain-text logging
+2. [Configuration](_samples/config2.yml) block that enforces JSON schema only for indicated Elasticsearch types
+3. [Configuration](_samples/config4.yml) block that enforces JSON schema for all Elasticsearch types
+4. [Configuration](_samples/config3.yml) block for a syslog replacement, with custom ES type of 'myapp'
 
 JSON schemas can be automatically generated from an object here: http://jsonschema.net/.  You can also view the [email_contact](_samples/email_contact.json) and [stock_item](_samples/stock_item.json) schemas as examples.
 
